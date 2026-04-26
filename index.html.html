@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 26.2.0.3 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "Noto Sans Mono CJK SC", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre class="western">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Almacén Online&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: Arial; padding: 20px; }
+    .producto { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+    button { padding: 5px 10px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Almacén Don José 🛒&lt;/h1&gt;
+
+&lt;h2&gt;Productos&lt;/h2&gt;
+
+&lt;div class=&quot;producto&quot;&gt;
+  &lt;p&gt;Pan - $500&lt;/p&gt;
+  &lt;button onclick=&quot;agregar('Pan', 500)&quot;&gt;Agregar&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;producto&quot;&gt;
+  &lt;p&gt;Leche - $800&lt;/p&gt;
+  &lt;button onclick=&quot;agregar('Leche', 800)&quot;&gt;Agregar&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;producto&quot;&gt;
+  &lt;p&gt;Fideos - $700&lt;/p&gt;
+  &lt;button onclick=&quot;agregar('Fideos', 700)&quot;&gt;Agregar&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Carrito&lt;/h2&gt;
+&lt;ul id=&quot;carrito&quot;&gt;&lt;/ul&gt;
+
+&lt;p&gt;Total: $&lt;span id=&quot;total&quot;&gt;0&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3&gt;Entrega&lt;/h3&gt;
+&lt;select id=&quot;entrega&quot;&gt;
+  &lt;option value=&quot;Retiro en local&quot;&gt;Retiro en local&lt;/option&gt;
+  &lt;option value=&quot;Envío a domicilio&quot;&gt;Envío a domicilio&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;h3&gt;Pago&lt;/h3&gt;
+&lt;select id=&quot;pago&quot;&gt;
+  &lt;option value=&quot;Efectivo&quot;&gt;Efectivo&lt;/option&gt;
+  &lt;option value=&quot;Tarjeta de débito&quot;&gt;Tarjeta de débito&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;button onclick=&quot;enviarPedido()&quot;&gt;Enviar pedido por WhatsApp&lt;/button&gt;
+
+&lt;script&gt;
+let carrito = [];
+let total = 0;
+
+function agregar(nombre, precio) {
+  carrito.push(nombre + &quot; $&quot; + precio);
+  total += precio;
+
+  document.getElementById(&quot;total&quot;).innerText = total;
+
+  let lista = document.getElementById(&quot;carrito&quot;);
+  let item = document.createElement(&quot;li&quot;);
+  item.innerText = nombre + &quot; $&quot; + precio;
+  lista.appendChild(item);
+}
+
+function enviarPedido() {
+  let entrega = document.getElementById(&quot;entrega&quot;).value;
+  let pago = document.getElementById(&quot;pago&quot;).value;
+
+  let mensaje = &quot;Hola, quiero hacer este pedido:%0A&quot;;
+
+  carrito.forEach(p =&gt; {
+    mensaje += &quot;- &quot; + p + &quot;%0A&quot;;
+  });
+
+  mensaje += &quot;%0ATotal: $&quot; + total;
+  mensaje += &quot;%0AEntrega: &quot; + entrega;
+  mensaje += &quot;%0APago: &quot; + pago;
+
+  let telefono = &quot;549XXXXXXXXXX&quot;; // poner número real
+  let url = &quot;https://wa.me/&quot; + telefono + &quot;?text=&quot; + mensaje;
+
+  window.open(url, &quot;_blank&quot;);
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
